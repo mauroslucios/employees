@@ -39,7 +39,9 @@ public class DepartamentoController {
 	@ApiOperation(value = "Retorna uma lista de departamentos")
 	@ApiResponses(value= {
 			@ApiResponse(code = 200, message = "Departamentos encontrados com sucesso!"),
+			@ApiResponse(code = 400, message = "Verifique sua requisição algo errado."),
 			@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso."),
+			@ApiResponse(code = 404, message = "Recurso não encontrado ou movido."),
 			@ApiResponse(code = 500, message = "Aconteceu uma exceção")
 	})
 	public ResponseEntity<List<Departamento>> buscarTodosDepartamentos(){
@@ -56,7 +58,9 @@ public class DepartamentoController {
 	@ApiOperation(value = "Retorna um único departamento pelo id")
 	@ApiResponses(value= {
 			@ApiResponse(code = 200, message = "Departamento encontrado com sucesso!"),
+			@ApiResponse(code = 400, message = "Verifique sua requisição algo errado."),
 			@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso."),
+			@ApiResponse(code = 404, message = "Recurso não encontrado ou movido."),
 			@ApiResponse(code = 500, message = "Aconteceu uma exceção.")
 	})
 	public ResponseEntity<Departamento> buscarUnicoDepartamento(@PathVariable Long id){
@@ -68,7 +72,8 @@ public class DepartamentoController {
 	@PostMapping(value="/departamentos")
 	@ApiResponses(value= {
 			@ApiResponse(code = 201, message = "Departamento cadastrado com sucesso!"),
-			@ApiResponse(code = 403, message = "Você não tem permissão."),
+			@ApiResponse(code = 400, message = "Verifique sua requisição algo errado."),
+			@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso."),
 			@ApiResponse(code = 500, message = "Aconteceu uma exceção.")
 	})
 	public ResponseEntity<Void> inserirDepartamento(@RequestBody Departamento objDepartamento){
@@ -79,6 +84,13 @@ public class DepartamentoController {
 	
 	@DeleteMapping(value="/departamento/{id}")
 	@ApiOperation(value="Deleta um departamento pelo id")
+	@ApiResponses(value= {
+			@ApiResponse(code = 200, message = "Departamento deletado com sucesso!"),
+			@ApiResponse(code = 400, message = "Verifique sua requisição algo errado."),
+			@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso."),
+			@ApiResponse(code = 404, message = "Recurso não encontrado ou movido."),
+			@ApiResponse(code = 500, message = "Aconteceu uma exceção.")
+	})
 	public ResponseEntity<Void> deleteUmDepartamento(@PathVariable Long id){
 		departamentoService.deleteUmDepartamento(id);
 		return ResponseEntity.noContent().build();
@@ -86,6 +98,13 @@ public class DepartamentoController {
 	
 	@PutMapping(value="/departamento/{id}")
 	@ApiOperation(value="Atualiza um departamento pelo id")
+	@ApiResponses(value= {
+			@ApiResponse(code = 200, message = "Departamento atualizado com sucesso!"),
+			@ApiResponse(code = 400, message = "Verifique sua requisição algo errado."),
+			@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso."),
+			@ApiResponse(code = 404, message = "Recurso não encontrado ou movido."),
+			@ApiResponse(code = 500, message = "Aconteceu uma exceção.")
+	})
 	public ResponseEntity<Void> atualizaUmDepartamento(@RequestBody Departamento objDepartamento, @PathVariable Long id){
 		objDepartamento.setId(id);
 		departamentoService.atualizaUmDepartamento(objDepartamento);
