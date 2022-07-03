@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
 @Entity
 @Table(name="tb_departamento")
 @AllArgsConstructor
-public class Departamento {
+public class Departamento{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
