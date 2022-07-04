@@ -30,6 +30,7 @@
 
 
 ### Deve-se atualizar a classe principal para evitar o login via web
+
 ```
 @SpringBootApplication(exclude= {SecurityAutoConfiguration.class})
 public class EmployeesApplication {
@@ -46,7 +47,9 @@ public class EmployeesApplication {
 
 }```
 
+
 # SQL das tabelas
+
 ```
 -- Table: public.tb_departamento
 
