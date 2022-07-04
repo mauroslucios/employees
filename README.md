@@ -13,21 +13,18 @@
 - git
 
 ## Endpoints funcionarios
-### localhost:8080
-- /swagger-ui.html
+### localhost:8080/swagger-ui.html
+
 - /api/v1/funcionarios
-- /api/v1/funcionarios
-- /api/v1/funcionarios/{i}
+- /api/v1/funcionarios/{id}
 
 ## Endpoints departamentos
 ### localhost:8080
 - /api/v1/departamentos
-- api/v1/departamentos
-- api/v1/departamentos/{id}
+- /api/v1/departamentos/{id}
 
-### Endpoints posts
+## Endpoints posts
 ### localhost:8080
-- /api/v1/posts
 - /api/v1/posts
 - /api/v1/posts/{id}
 
