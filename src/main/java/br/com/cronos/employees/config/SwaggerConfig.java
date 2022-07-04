@@ -38,7 +38,7 @@ public class SwaggerConfig {
 	private ApiInfo metainfo() {
 		return new ApiInfoBuilder()
 				.title("App de controle de Posts")
-				.description("Treinamento java de relacionamentos entre entidades")
+				.description("Relacionamentos entre entidades: funcionários, departamentos e posts")
 				.version("1.0")
 				.contact(new Contact("mauro lucio", "https://linkedin.com/in/mauro-lucio-pereira", "mauroslucios"))
 				.license("Apache License Version 2.0")
