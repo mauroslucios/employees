@@ -48,7 +48,9 @@ public class Funcionario {
 	TipoFuncionario tipo;
 	
 	
-	
+	public Funcionario() {
+		
+	}
 
 	
 }
