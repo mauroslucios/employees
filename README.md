@@ -29,6 +29,23 @@
 - /api/v1/posts/{id}
 
 
+### Deve-se atualizar a classe principal para evitar o login via web
+```
+@SpringBootApplication(exclude= {SecurityAutoConfiguration.class})
+public class EmployeesApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(EmployeesApplication.class, args);
+	}
+	
+	@Bean
+	public PasswordEncoder getPasswordEncoder() {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		return encoder;
+	}
+
+}```
+
 # SQL das tabelas
 ```
 -- Table: public.tb_departamento
