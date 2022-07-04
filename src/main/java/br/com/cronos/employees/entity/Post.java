@@ -37,4 +37,8 @@ public class Post {
 	@JoinColumn(name="funcionario_id")
 	private Funcionario funcionario;
 	
+	public Post() {
+		
+	}
+	
 }
