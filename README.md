@@ -3,13 +3,12 @@
 - java
 - jpa
 - spring
-- postgresql
+- postgresql(AWS)
 - docker(container postgresql - localhost)
 - spring security(encriptar senha)
 - lombok
 - swaggerFox
 - swaggerUI
-- postgresql(heroku)
 - git
 
 ## Endpoints funcionarios
