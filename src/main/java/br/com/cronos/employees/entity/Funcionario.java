@@ -1,5 +1,7 @@
 package br.com.cronos.employees.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,6 +14,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.springframework.hateoas.RepresentationModel;
+
 import br.com.cronos.employees.enums.TipoFuncionario;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,9 +26,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Funcionario {
+public class Funcionario extends RepresentationModel<Funcionario> implements Serializable{
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
