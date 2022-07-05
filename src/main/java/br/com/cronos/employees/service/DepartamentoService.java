@@ -3,19 +3,19 @@ package br.com.cronos.employees.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.ObjectNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.cronos.employees.entity.Departamento;
 import br.com.cronos.employees.repository.DepartamentoRepository;
-import org.hibernate.ObjectNotFoundException;
-import lombok.AllArgsConstructor;
 
 @Service
-@AllArgsConstructor
 public class DepartamentoService {
 
+	@Autowired
 	private DepartamentoRepository departamentoRepository;
-	
+
 	/**
 	 * 
 	 * @return Faz uma busca por uma lista de departamentos no banco
@@ -64,5 +64,7 @@ public class DepartamentoService {
 		departamento.setNome(objDepartamento.getNome());
 		return inserirDepartamento(departamento);
 	}
+	
+	
 	
 }
