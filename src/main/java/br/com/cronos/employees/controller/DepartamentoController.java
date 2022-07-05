@@ -1,8 +1,11 @@
 package br.com.cronos.employees.controller;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,14 +25,13 @@ import br.com.cronos.employees.service.DepartamentoService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping(value="/api/v1")
 @CrossOrigin(origins="*")
-@AllArgsConstructor
 public class DepartamentoController {
 
+	@Autowired
 	private DepartamentoService departamentoService;
 	/**
 	 * 
@@ -45,7 +47,13 @@ public class DepartamentoController {
 			@ApiResponse(code = 500, message = "Aconteceu uma exceção")
 	})
 	public ResponseEntity<List<Departamento>> buscarTodosDepartamentos(){
-		List<Departamento> departamentos = departamentoService.buscarTodosDepartamentos();
+		List<Departamento> listDepartamentos = departamentoService.buscarTodosDepartamentos();
+		ArrayList<Departamento> departamentos = new ArrayList<Departamento>();
+		for(Departamento departamento : listDepartamentos){
+			Long id = departamento.getId();
+			departamento.add(linkTo(methodOn(DepartamentoController.class).buscarUnicoDepartamento(id)).withRel("Listar departamento pelo id"));
+			departamentos.add(departamento);
+		}
 		return ResponseEntity.ok().body(departamentos);
 	}
 	
@@ -65,6 +73,7 @@ public class DepartamentoController {
 	})
 	public ResponseEntity<Departamento> buscarUnicoDepartamento(@PathVariable Long id){
 		Departamento departamento = departamentoService.buscarUnicoDepartamento(id);
+		departamento.add(linkTo(methodOn(DepartamentoController.class).buscarTodosDepartamentos()).withRel("Listar todos departamentos"));
 		return ResponseEntity.ok().body(departamento);
 	}
 	
