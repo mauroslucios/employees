@@ -1,5 +1,7 @@
 package br.com.cronos.employees.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,12 +10,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.hateoas.RepresentationModel;
+
 import lombok.AllArgsConstructor;
 
 @Entity
 @Table(name="tb_departamento")
 @AllArgsConstructor
-public class Departamento{
+public class Departamento extends RepresentationModel<Departamento> implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,6 +51,7 @@ public class Departamento{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
+		
 
 }
