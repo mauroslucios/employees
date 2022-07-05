@@ -1,7 +1,10 @@
 package br.com.cronos.employees.controller;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +49,13 @@ public class FuncionarioController {
 			@ApiResponse(code = 500, message = "Aconteceu uma exceção.")
 	})
 	public ResponseEntity<List<Funcionario>> buscarTodosFuncionarios(){
-		List<Funcionario> funcionarios = funcionarioService.buscarTodosFuncionarios();
+		List<Funcionario> listFuncionarios = funcionarioService.buscarTodosFuncionarios();
+		ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
+		for(Funcionario funcionario : listFuncionarios) {
+			Long id = funcionario.getId();
+			funcionario.add(linkTo(methodOn(FuncionarioController.class).buscarUnicoFuncionario(id)).withRel("Listar funcionário pelo id"));
+			funcionarios.add(funcionario);
+		}
 		return ResponseEntity.ok().body(funcionarios);
 	}
 	
@@ -64,6 +73,7 @@ public class FuncionarioController {
 	})
 	public ResponseEntity<Funcionario> buscarUnicoFuncionario(@PathVariable Long id){
 		Funcionario funcionario = funcionarioService.buscarUnicoFuncionario(id);
+		funcionario.add(linkTo(methodOn(FuncionarioController.class).buscarTodosFuncionarios()).withRel("Listar todos funcionários"));
 		return ResponseEntity.ok().body(funcionario);
 	}
 	
