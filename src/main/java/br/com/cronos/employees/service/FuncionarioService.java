@@ -16,6 +16,10 @@ public class FuncionarioService {
 
 	private FuncionarioRepository funcionarioRepository;
 	
+	/**
+	 * 
+	 * @return retorna uma lista de funcionários
+	 */
 	public List<Funcionario> buscarTodosFuncionarios(){
 		return funcionarioRepository.findAll();
 	}
