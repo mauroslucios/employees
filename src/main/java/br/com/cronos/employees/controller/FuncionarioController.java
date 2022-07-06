@@ -64,7 +64,7 @@ public class FuncionarioController {
 	 * @param id
 	 * @return retorna um único funcionário
 	 */
-	@GetMapping(value="/{id}", produces="application/json")
+	@GetMapping(value="/funcionarios/{id}", produces="application/json")
 	@ApiOperation(value="Busca um único funcionário")
 	@ApiResponses(value= {
 			@ApiResponse(code = 200, message = "Funcionário encontrado com sucesso!"),
@@ -82,9 +82,9 @@ public class FuncionarioController {
 	 * @param objFuncionario
 	 * @return faz a inserção de um funcionário no banco
 	 */
+	@PostMapping(value="/funcionarios", produces="application/json")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value="Cadastra um funcionário no banco")
-	@PostMapping(value="/funcionarios", produces="application/json")
 	@ApiResponses(value= {
 			@ApiResponse(code = 201, message = "Funcionario cadastrado com sucesso!"),
 			@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
@@ -102,7 +102,7 @@ public class FuncionarioController {
 	 * @param id
 	 * @return deleta um funcionário do banco
 	 */
-	@DeleteMapping(value="/funcionario/{id}", produces="application/json")
+	@DeleteMapping(value="/funcionarios/{id}", produces="application/json")
 	@ApiOperation(value="Deleta um funcionário do banco")
 	@ApiResponses(value= {
 			@ApiResponse(code = 204, message = "Funcionário deletado com sucesso!"),
@@ -132,10 +132,6 @@ public class FuncionarioController {
 		funcionarioService.atualizarUmFuncionario(objFuncionario);
 		return ResponseEntity.noContent().build();
 	}
-	
-	
-	
-	
 	
 	
 }
