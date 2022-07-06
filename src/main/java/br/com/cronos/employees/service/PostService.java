@@ -18,19 +18,38 @@ public class PostService {
 	@Autowired
 	private PostRepository postRepository;
 
+	/**
+	 * 
+	 * @return busca uma lista de posts no banco
+	 */
 	public List<Post> buscarTodosPosts() {
 		return postRepository.findAll();
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @return retorna um único post pelo id do banco
+	 * @throws ObjectNotFoundException
+	 */
 	public Post buscarUnicoPost(Long id) throws ObjectNotFoundException{
 		Optional<Post> post = postRepository.findById(id);
 		return post.orElseThrow(()-> new ObjectNotFoundException(null, "Post não encontrado!"));
 	}
 
+	/**
+	 * 
+	 * @param objPost
+	 * @return faz a inserção de um post no banco 
+	 */
 	public Post inserirPost(Post objPost) {
 		return postRepository.save(objPost);
 	}
 
+	/**
+	 * 
+	 * @param id deleta um post pelo id do banco
+	 */
 	public void deletaUmPost(Long id) {
 		postRepository.deleteById(id);
 	}
