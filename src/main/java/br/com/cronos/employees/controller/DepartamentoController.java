@@ -77,6 +77,11 @@ public class DepartamentoController {
 		return ResponseEntity.ok().body(departamento);
 	}
 	
+	/**
+	 * 
+	 * @param objDepartamento
+	 * @return cadastra um departamento no banco
+	 */
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping(value="/departamentos")
 	@ApiResponses(value= {
@@ -91,7 +96,12 @@ public class DepartamentoController {
 		return ResponseEntity.created(uri).build();
 	}
 	
-	@DeleteMapping(value="/departamento/{id}")
+	/**
+	 * 
+	 * @param id
+	 * @return deleta um departamento do banco pelo id
+	 */
+	@DeleteMapping(value="/departamentos/{id}")
 	@ApiOperation(value="Deleta um departamento pelo id")
 	@ApiResponses(value= {
 			@ApiResponse(code = 200, message = "Departamento deletado com sucesso!"),
@@ -105,7 +115,13 @@ public class DepartamentoController {
 		return ResponseEntity.noContent().build();
 	}
 	
-	@PutMapping(value="/departamento/{id}")
+	/**
+	 * 
+	 * @param objDepartamento
+	 * @param id
+	 * @return atualiza um departamento no banco pelo id
+	 */
+	@PutMapping(value="/departamentos/{id}")
 	@ApiOperation(value="Atualiza um departamento pelo id")
 	@ApiResponses(value= {
 			@ApiResponse(code = 200, message = "Departamento atualizado com sucesso!"),
