@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.cronos.employees.entity.Departamento;
+import br.com.cronos.employees.exceptions.EntityNotFoundException;
 import br.com.cronos.employees.repository.DepartamentoRepository;
 
 @Service
@@ -31,9 +32,9 @@ public class DepartamentoService {
 	 * @return Faz uma busca por uma único departamento no banco
 	 * @throws ObjectNotFoundException lança uma exceção se não encontrado
 	 */
-	public Departamento buscarUnicoDepartamento(Long id) throws ObjectNotFoundException{
+	public Departamento buscarUnicoDepartamento(Long id){
 		Optional<Departamento> departamento = departamentoRepository.findById(id);
-		return departamento.orElseThrow(()-> new ObjectNotFoundException(null,"Departamento não encontrado!"));
+		return departamento.orElseThrow(()-> new EntityNotFoundException("Departamento não encontrado id = " + id));
 	}
 	
 	
